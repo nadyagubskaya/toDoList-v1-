@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <script>
+
+
+            let taskObj = {
+                tasks: [],
+                addTask(text) {
+                    let task = {
+                        id: Date.now(),
+                        text,
+                        status: false
+                    }
+                    this.tasks.push(task)
+                },
+                
+                deleteTask(id) {
+                    let deleteItem = this.tasks.filter(function(item, i) {
+                        if (id == item.id){
+                            return i;
+                        }
+                    })
+                    this.tasks.splice(deleteItem, 1)
+                },
+                
+                editTaskText(id, text) {
+                    this.tasks = this.tasks.filter(function(item, i) {
+                        if (id == item.id){
+                            item.text = text;
+                        }
+                        return item;
+                    })
+                },
+                editTaskStatus(id, status) {
+                    this.tasks = this.tasks.filter(function(item, i) {
+                        if (id == item.id){
+                            item.status = status;
+                        }
+                        return item;
+                    })
+                },
+
+            };
+
+            
+            Object.freeze(taskObj);
+
+        </script>
+
+    </body>
+</html>
