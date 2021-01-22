@@ -19,37 +19,39 @@
                     }
                     this.tasks.push(task)
                 },
-                
+
                 deleteTask(id) {
-                    let deleteItem = this.tasks.filter(function(item, i) {
-                        if (id == item.id){
-                            return i;
-                        }
-                    })
-                    this.tasks.splice(deleteItem, 1)
+                    const index = this.getTaskIndex(id);
+                    this.tasks.splice(index, 1);
                 },
                 
                 editTaskText(id, text) {
-                    this.tasks = this.tasks.filter(function(item, i) {
-                        if (id == item.id){
-                            item.text = text;
-                        }
-                        return item;
-                    })
+                   const index = this.getTaskIndex(id);
+                    this.tasks[index].text = text;
                 },
-                editTaskStatus(id, status) {
-                    this.tasks = this.tasks.filter(function(item, i) {
-                        if (id == item.id){
-                            item.status = status;
-                        }
-                        return item;
-                    })
+                editTaskStatus(id) {
+                    const index = this.getTaskIndex(id);
+                    this.tasks[index].status = true;
                 },
+                
+                getTaskIndex(id) {
+                    return this.tasks.findIndex(function (el) {
+                        return el.id === id;
+                    })
+                }
+                
 
             };
-
             
+            
+            
+
+
             Object.freeze(taskObj);
+
+
+
+
 
         </script>
 
